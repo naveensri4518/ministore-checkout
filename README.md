@@ -56,6 +56,32 @@ npx playwright show-report
 
 Tests use `data-testid` selectors, and retries are off so flaky tests stay visible. All 7 tests pass.
 
+## Test plan
+
+Scope: the checkout page only (cart, quantity, name validation, order confirmation). There is no backend, database, payment or external service, so none of those are tested.
+
+Risks, in priority order:
+
+1. **Wrong total:** a pricing or rounding error charges the customer the wrong amount. Covered by TC01, TC03.
+2. **Invalid order accepted:** an order goes through with an empty cart or a blank name. Covered by TC02, TC04, TC05.
+3. **Duplicate order:** a rapid double-click or second submit creates two confirmations or changes the reference. Covered by TC06, TC07.
+4. **Bad quantity input:** blank, 0, negative or very large values break the total. Handled by clamping to 1-99.
+
+Approach: manual exploratory checks of the two highest-risk behaviours first, then automated Playwright tests for repeatable regression coverage. Assertions check what the customer sees (text, totals, visibility). There are no fixed waits.
+
+## Manual test results
+
+| # | Steps | Expected | Actual | Result |
+|---|-------|----------|--------|--------|
+| M1 | Open the page with an empty cart, enter a name, click Place Order | Order blocked. Message: "Your cart is empty. Add at least one item before placing an order." Name stays in the field. | Same as expected | Pass |
+| M2 | Add Notebook, enter a name, double-click Place Order quickly | One confirmation, one order reference | Same as expected | Pass |
+
+No defects found, so none are reported.
+
+## Automated test results
+
+`npx playwright test`: 7 passed, 0 failed (Chromium). The HTML report is generated with `npx playwright show-report`.
+
 ## Author
 
 Naveen Sri
