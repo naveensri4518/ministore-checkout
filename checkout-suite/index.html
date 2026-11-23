@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Store Checkout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🛍️ Mini<span>Store</span></div>
+    <div class="topbar-note">Free demo shipping &middot; Secure checkout</div>
+  </header>
+
+  <main>
+    <h1>Checkout</h1>
+
+    <div id="checkout-view" class="layout" data-testid="checkout-view">
+      <section class="products" aria-labelledby="products-heading">
+        <h2 id="products-heading">Products</h2>
+        <ul class="product-list">
+          <li class="product-card">
+            <div class="product-image notebook" role="img" aria-label="Notebook">📓</div>
+            <div class="product-info">
+              <span class="product-name">Notebook</span>
+              <span class="product-desc">A5 hardcover, 200 pages</span>
+              <span class="product-price">$19.99</span>
+            </div>
+            <button type="button" data-action="add" data-id="notebook" data-testid="add-notebook">Add Notebook</button>
+          </li>
+          <li class="product-card">
+            <div class="product-image penset" role="img" aria-label="Pen Set">🖊️</div>
+            <div class="product-info">
+              <span class="product-name">Pen Set</span>
+              <span class="product-desc">Pack of 5 gel pens</span>
+              <span class="product-price">$4.50</span>
+            </div>
+            <button type="button" data-action="add" data-id="penset" data-testid="add-penset">Add Pen Set</button>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cart" aria-labelledby="cart-heading">
+        <h2 id="cart-heading">Your cart</h2>
+        <p id="cart-empty" data-testid="cart-empty">Your cart is empty.</p>
+        <ul id="cart-list" class="cart-list" data-testid="cart-list"></ul>
+        <p class="total">Order total: <strong id="order-total" data-testid="order-total">$0.00</strong></p>
+      </section>
+
+      <form id="checkout-form" class="checkout" novalidate>
+        <h2>Your details</h2>
+        <label for="name-input">Full name (required)</label>
+        <input id="name-input" name="name" type="text" autocomplete="off" placeholder="e.g. Priya Sharma" data-testid="name-input" />
+        <p id="name-error" class="error" role="alert" data-testid="name-error" hidden></p>
+        <p id="cart-error" class="error" role="alert" data-testid="cart-error" hidden></p>
+        <button type="submit" id="place-order" data-testid="place-order">Place Order</button>
+      </form>
+    </div>
+
+    <section id="confirmation" data-testid="confirmation" hidden>
+      <h2>Thank you, order confirmed!</h2>
+      <p>Name: <span id="confirm-name" data-testid="confirm-name"></span></p>
+      <p>Total paid: <span id="confirm-total" data-testid="confirm-total"></span></p>
+      <p>Order reference: <strong id="order-reference" data-testid="order-reference"></strong></p>
+      <button type="button" id="new-order" data-testid="new-order">Start new order</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
