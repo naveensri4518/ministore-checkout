@@ -3,7 +3,7 @@
 A front-end checkout page (no backend, no database) with an automated Playwright test suite. Built for my SDET internship project.
 
 - **Live demo:** https://naveensri4518.github.io/ministore-checkout/
-- **Demo video:** ADD_YOUR_YOUTUBE_LINK_HERE
+- **Demo video:** [ADD_YOUR_YOUTUBE_LINK_HERE](https://youtu.be/KEaVOWoOknM)
 
 ## Features
 
